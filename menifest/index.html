@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Flask App Info</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 2rem;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            color: #333;
+        }
+        #info {
+            margin-top: 1rem;
+            padding: 1rem;
+            background-color: #eef;
+            border-radius: 8px;
+            max-width: 400px;
+        }
+        button {
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to the Flask App</h1>
+    <p>Click the button below to get server info:</p>
+    <button onclick="fetchInfo()">Get Info</button>
+
+    <div id="info"></div>
+
+    <script>
+        function fetchInfo() {
+            fetch('/api/info')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('info').innerHTML = `
+                        <strong>Pod IP:</strong> ${data.pod_ip}<br>
+                        <strong>Public IP:</strong> ${data.public_ip}
+                    `;
+                })
+                .catch(error => {
+                    document.getElementById('info').innerHTML = "Error fetching data.";
+                    console.error("Error:", error);
+                });
+        }
+    </script>
+</body>
+</html>
+
