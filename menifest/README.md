@@ -33,6 +33,6 @@ Getting Started With ArgoCD:
 
 3. Login Using The CLI
 
-  argocd admin initial-password -n argocd
+    argocd admin initial-password -n argocd
 
 
